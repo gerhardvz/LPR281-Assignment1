@@ -8,8 +8,8 @@ namespace LPR281_Assignment1
 {
     class Point
     {
-        double x;
-        double y;
+        public double x;
+        public double y;
        public Point(double x,double y)
         {
             this.x = x;
