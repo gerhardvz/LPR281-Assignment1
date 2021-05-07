@@ -195,17 +195,17 @@ namespace LPR281_Assignment1
                 case '<':
                     {
                         return (value < result);
-                        break;
+                       
                     }
                 case '>':
                     {
                         return (value > result);
-                        break;
+                        
                     }
                 case '=':
                     {
                         return (value == result);
-                        break;
+                        
                     }
             }
 
