@@ -1,0 +1,7 @@
+C:\Users\Lancerion\source\repos\LPR281-Assignment1\LPR281-Assignment1\obj\Debug\net5.0-windows\LPR281-Assignment1.csprojAssemblyReference.cache
+C:\Users\Lancerion\source\repos\LPR281-Assignment1\LPR281-Assignment1\obj\Debug\net5.0-windows\LPR281_Assignment1.Form1.resources
+C:\Users\Lancerion\source\repos\LPR281-Assignment1\LPR281-Assignment1\obj\Debug\net5.0-windows\LPR281-Assignment1.csproj.GenerateResource.cache
+C:\Users\Lancerion\source\repos\LPR281-Assignment1\LPR281-Assignment1\obj\Debug\net5.0-windows\LPR281-Assignment1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lancerion\source\repos\LPR281-Assignment1\LPR281-Assignment1\obj\Debug\net5.0-windows\LPR281-Assignment1.AssemblyInfoInputs.cache
+C:\Users\Lancerion\source\repos\LPR281-Assignment1\LPR281-Assignment1\obj\Debug\net5.0-windows\LPR281-Assignment1.AssemblyInfo.cs
+C:\Users\Lancerion\source\repos\LPR281-Assignment1\LPR281-Assignment1\obj\Debug\net5.0-windows\LPR281-Assignment1.csproj.CoreCompileInputs.cache

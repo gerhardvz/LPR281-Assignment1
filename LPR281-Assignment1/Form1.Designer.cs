@@ -152,6 +152,7 @@ namespace LPR281_Assignment1
         private System.Windows.Forms.Button btnObjectiveFunctionChange;
         private System.Windows.Forms.Button btnConstraintRemove;
         private System.Windows.Forms.Button btnConstraintAdd;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graph;
     }
 }
 
