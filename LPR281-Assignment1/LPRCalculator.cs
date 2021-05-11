@@ -15,14 +15,15 @@ namespace LPR281_Assignment1
 
         }
 
-        public void AddConstraint()
+        public void AddConstraint(double result, char comparison, List<float> x)
         {
 
+            listLPRConstraints.Add(new LPREntry(result,comparison,x));
         }
         public void AddDecisionVariable(String name, String description)
         {
 
-            decisionVariable.Add(new DecisionVariable(name, description));
+            decisionVariable.Add(new (name, description));
 
         }
 
@@ -30,11 +31,24 @@ namespace LPR281_Assignment1
         /**
     * Remove a Constraint
     */
-        public void RemoveConstraint() { }
+        
+        public void RemoveConstraint(double result, char comparison, List<float> x)
+        { 
+            Predicate<LPREntry> predicate= (LPREntry lpr)=> (lpr.getResult==result&&lpr.row.Equals(x)&&lpr.getComparison);
+            listLPRConstraints.Remove( listLPRConstraints.Find(predicate));
+      
+         
+        }
+             
+        public void RemovedecisionVariable (string value)
+        { 
+            Predicate<LPREntry> predicate= (LPREntry lpr)=> (lpr.toString==value);
+            listLPRConstraints.Remove( listLPRConstraints.Find(predicate));
+      
+         
+        }
+                    
 
-        /**
-         * Removes a Decision Variable
-         */
 
 
         public void ChangeConstraint() { }
@@ -190,9 +204,15 @@ namespace LPR281_Assignment1
         public List<float> row;
 
 
-        char comparison;
+        char comparison ;
+        public char getComparison() {return comparison };
         double result;
         public double getValue() { return result; }
+
+        public double getResult()
+        {
+            return result;
+        }
 
         public String toString()
         {
