@@ -19,8 +19,13 @@ namespace LPR281_Assignment1
         {
 
         }
+        public void AddDecisionVariable(String name, String description)
+        {
 
-      
+            decisionVariable.Add(new DecisionVariable(name, description));
+
+        }
+
 
         /**
     * Remove a Constraint
@@ -30,15 +35,22 @@ namespace LPR281_Assignment1
         /**
          * Removes a Decision Variable
          */
-        
+
 
         public void ChangeConstraint() { }
 
-        public void ChangeDecisionVaraible() { }
+        public void ChangeDecisionVariable(int pos, String name, String description)
+        {
+            decisionVariable[pos].Name = name;
+            decisionVariable[pos].Desciption = description;
+        }
 
         public void getConstraints() { }
 
-        public void getDecisionVariables() { }
+        public List<DecisionVariable> getDecisionVariables()
+        {
+            return decisionVariable;
+        }
 
         public void setObjectiveFunction() { }
 
@@ -47,16 +59,16 @@ namespace LPR281_Assignment1
          */
         private List<Point> getCornerPoints()
         {
-            
+
             List<Point> points = new List<Point>();
-            
-            for(int i = 0; i < listLPRConstraints.Count; i++)
+
+            for (int i = 0; i < listLPRConstraints.Count; i++)
             {
-               
+
                 for (int j = 0; j < listLPRConstraints.Count; i++)
                 {
                     //test if its the same line
-                    if (i==j)
+                    if (i == j)
                     {
                         continue;
                     }
@@ -83,13 +95,13 @@ namespace LPR281_Assignment1
             return points;
         }
 
-        private List<Point>  validatePoints(List<Point> points)
+        private List<Point> validatePoints(List<Point> points)
         {
             List<Point> validPoints = new List<Point>();
 
-            foreach(Point p in points)
+            foreach (Point p in points)
             {
-                for(int i=0;i< listLPRConstraints.Count; i++)
+                for (int i = 0; i < listLPRConstraints.Count; i++)
                 {
                     //Test if point adhear to constraints
                     if (listLPRConstraints[i].adhear(p))
@@ -101,7 +113,7 @@ namespace LPR281_Assignment1
                 }
             }
 
-                return validPoints;
+            return validPoints;
         }
 
         private Point CalculateLPValue(List<Point> validPoints)
@@ -111,11 +123,11 @@ namespace LPR281_Assignment1
             if (isMax)
             {
                 double largest = 0;
-                Point pLargest = new Point(0,0);
-                foreach(Point p in validPoints)
+                Point pLargest = new Point(0, 0);
+                foreach (Point p in validPoints)
                 {
                     double val = (ObjectiveFunction.row[0] * p.x) + (ObjectiveFunction.row[1] * p.y);
-                    
+
 
                     if (largest < val)
                     {
@@ -125,17 +137,17 @@ namespace LPR281_Assignment1
 
 
                 }
-                
+
                 return pLargest;
             }
             else
             {
                 double smallest = Double.MaxValue;
-                Point pSmallest= new Point(0, 0);
+                Point pSmallest = new Point(0, 0);
                 foreach (Point p in validPoints)
                 {
                     double val = (ObjectiveFunction.row[0] * p.x) + (ObjectiveFunction.row[1] * p.y);
-                  
+
                     if (smallest > val)
                     {
                         smallest = val;
@@ -154,18 +166,19 @@ namespace LPR281_Assignment1
         public void Calculate() { }
         private List<LPREntry> listLPRConstraints;
         private LPREntry ObjectiveFunction;
+        private List<DecisionVariable> decisionVariable;
         //is the Problem a Maximum problem 
         private bool isMax;
 
     }
 
-    class LPREntry
+    public class LPREntry
     {
-       
-       public LPREntry(double result, char comparison, List<float> x)
+
+        public LPREntry(double result, char comparison, List<float> x)
         {
 
-            foreach(float a in x)
+            foreach (float a in x)
             {
                 row.Add(a);
             }
@@ -176,17 +189,18 @@ namespace LPR281_Assignment1
         }
         public List<float> row;
 
-       
+
         char comparison;
         double result;
-        public double  getValue() { return result; }
+        public double getValue() { return result; }
 
         public String toString()
         {
             return "";
         }
 
-        public bool adhear(Point point) {
+        public bool adhear(Point point)
+        {
 
             double value = (row[0] * point.x) + (row[1] * point.y);
 
@@ -195,17 +209,17 @@ namespace LPR281_Assignment1
                 case '<':
                     {
                         return (value < result);
-                       
+
                     }
                 case '>':
                     {
                         return (value > result);
-                        
+
                     }
                 case '=':
                     {
                         return (value == result);
-                        
+
                     }
             }
 
@@ -215,5 +229,19 @@ namespace LPR281_Assignment1
         //slack
         //access/
         //artificail/
+    }
+
+    public class DecisionVariable
+    {
+        public DecisionVariable(String Name, String Description)
+        {
+            _name = Name;
+            _description = Description;
+        }
+        String _name;
+        String _description;
+
+        public String Name { get; set; }
+        public String Desciption { get; set; }
     }
 }

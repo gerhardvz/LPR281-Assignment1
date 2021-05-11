@@ -11,9 +11,9 @@ using System.Windows.Forms;
 namespace LPR281_Assignment1
 {
     //Custom Dialog Box for Adding and Editing Constraints
-    public partial class Constraint : Form
+    public partial class ConstraintDialog : Form
     {
-        public Constraint()
+        public ConstraintDialog()
         {
             InitializeComponent();
         }
