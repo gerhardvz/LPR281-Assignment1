@@ -30,14 +30,14 @@ namespace LPR281_Assignment1
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnDecisionVariableAdd = new System.Windows.Forms.Button();
-            this.btnDecisionVariableRemove = new System.Windows.Forms.Button();
+            this.btnObjectiveFunctionChange = new System.Windows.Forms.Button();
             this.btnConstraintRemove = new System.Windows.Forms.Button();
             this.btnConstraintAdd = new System.Windows.Forms.Button();
-            this.btnObjectiveFunctionChange = new System.Windows.Forms.Button();
+            this.btnDecisionVariableRemove = new System.Windows.Forms.Button();
+            this.btnDecisionVariableAdd = new System.Windows.Forms.Button();
+            this.gbDecisionVariable = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +48,7 @@ namespace LPR281_Assignment1
             this.panel1.Controls.Add(this.btnConstraintAdd);
             this.panel1.Controls.Add(this.btnDecisionVariableRemove);
             this.panel1.Controls.Add(this.btnDecisionVariableAdd);
-            this.panel1.Controls.Add(this.groupBox1);
+            this.panel1.Controls.Add(this.gbDecisionVariable);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Location = new System.Drawing.Point(612, 85);
@@ -56,51 +56,14 @@ namespace LPR281_Assignment1
             this.panel1.Size = new System.Drawing.Size(485, 469);
             this.panel1.TabIndex = 3;
             // 
-            // groupBox1
+            // btnObjectiveFunctionChange
             // 
-            this.groupBox1.Location = new System.Drawing.Point(43, 11);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(301, 116);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Decision Variable";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Location = new System.Drawing.Point(43, 275);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(301, 164);
-            this.groupBox2.TabIndex = 5;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Constraints";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Location = new System.Drawing.Point(43, 144);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(301, 100);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Objective Function";
-            // 
-            // btnDecisionVariableAdd
-            // 
-            this.btnDecisionVariableAdd.Location = new System.Drawing.Point(365, 32);
-            this.btnDecisionVariableAdd.Name = "btnDecisionVariableAdd";
-            this.btnDecisionVariableAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnDecisionVariableAdd.TabIndex = 6;
-            this.btnDecisionVariableAdd.Text = "Add";
-            this.btnDecisionVariableAdd.UseVisualStyleBackColor = true;
-            this.btnDecisionVariableAdd.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnDecisionVariableRemove
-            // 
-            this.btnDecisionVariableRemove.Location = new System.Drawing.Point(365, 85);
-            this.btnDecisionVariableRemove.Name = "btnDecisionVariableRemove";
-            this.btnDecisionVariableRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnDecisionVariableRemove.TabIndex = 7;
-            this.btnDecisionVariableRemove.Text = "Remove";
-            this.btnDecisionVariableRemove.UseVisualStyleBackColor = true;
+            this.btnObjectiveFunctionChange.Location = new System.Drawing.Point(361, 186);
+            this.btnObjectiveFunctionChange.Name = "btnObjectiveFunctionChange";
+            this.btnObjectiveFunctionChange.Size = new System.Drawing.Size(75, 23);
+            this.btnObjectiveFunctionChange.TabIndex = 10;
+            this.btnObjectiveFunctionChange.Text = "Set";
+            this.btnObjectiveFunctionChange.UseVisualStyleBackColor = true;
             // 
             // btnConstraintRemove
             // 
@@ -120,14 +83,51 @@ namespace LPR281_Assignment1
             this.btnConstraintAdd.Text = "Add";
             this.btnConstraintAdd.UseVisualStyleBackColor = true;
             // 
-            // btnObjectiveFunctionChange
+            // btnDecisionVariableRemove
             // 
-            this.btnObjectiveFunctionChange.Location = new System.Drawing.Point(361, 186);
-            this.btnObjectiveFunctionChange.Name = "btnObjectiveFunctionChange";
-            this.btnObjectiveFunctionChange.Size = new System.Drawing.Size(75, 23);
-            this.btnObjectiveFunctionChange.TabIndex = 10;
-            this.btnObjectiveFunctionChange.Text = "Set";
-            this.btnObjectiveFunctionChange.UseVisualStyleBackColor = true;
+            this.btnDecisionVariableRemove.Location = new System.Drawing.Point(365, 85);
+            this.btnDecisionVariableRemove.Name = "btnDecisionVariableRemove";
+            this.btnDecisionVariableRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnDecisionVariableRemove.TabIndex = 7;
+            this.btnDecisionVariableRemove.Text = "Remove";
+            this.btnDecisionVariableRemove.UseVisualStyleBackColor = true;
+            // 
+            // btnDecisionVariableAdd
+            // 
+            this.btnDecisionVariableAdd.Location = new System.Drawing.Point(365, 32);
+            this.btnDecisionVariableAdd.Name = "btnDecisionVariableAdd";
+            this.btnDecisionVariableAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnDecisionVariableAdd.TabIndex = 6;
+            this.btnDecisionVariableAdd.Text = "Add";
+            this.btnDecisionVariableAdd.UseVisualStyleBackColor = true;
+            this.btnDecisionVariableAdd.Click += new System.EventHandler(this.btnDecisionVariableAdd_Click);
+            // 
+            // gbDecisionVariable
+            // 
+            this.gbDecisionVariable.Location = new System.Drawing.Point(43, 11);
+            this.gbDecisionVariable.Name = "gbDecisionVariable";
+            this.gbDecisionVariable.Size = new System.Drawing.Size(301, 116);
+            this.gbDecisionVariable.TabIndex = 3;
+            this.gbDecisionVariable.TabStop = false;
+            this.gbDecisionVariable.Text = "Decision Variable";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(43, 275);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(301, 164);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Constraints";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Location = new System.Drawing.Point(43, 144);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(301, 100);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Objective Function";
             // 
             // Form1
             // 
@@ -146,7 +146,7 @@ namespace LPR281_Assignment1
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnDecisionVariableRemove;
         private System.Windows.Forms.Button btnDecisionVariableAdd;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbDecisionVariable;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnObjectiveFunctionChange;
