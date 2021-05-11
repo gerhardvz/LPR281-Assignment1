@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\Lancerion\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Lancerion\\.nuget\\packages"
+    ]
+  }
+}

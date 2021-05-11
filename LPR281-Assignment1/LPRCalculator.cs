@@ -12,8 +12,10 @@ namespace LPR281_Assignment1
 
         public LPRCalculator()
         {
-
-        }
+            listLPRConstraints = new List<LPREntry>();
+         ObjectiveFunction = new LPREntry();
+        decisionVariable = new List<DecisionVariable>();
+    }
 
         public void AddConstraint()
         {
@@ -21,6 +23,7 @@ namespace LPR281_Assignment1
         }
         public void AddDecisionVariable(String name, String description)
         {
+
 
             decisionVariable.Add(new DecisionVariable(name, description));
 
@@ -30,7 +33,8 @@ namespace LPR281_Assignment1
         /**
     * Remove a Constraint
     */
-        public void RemoveConstraint() { }
+        public void RemoveConstraint() {}
+        
 
         /**
          * Removes a Decision Variable
@@ -165,6 +169,7 @@ namespace LPR281_Assignment1
          */
         public void Calculate() { }
         private List<LPREntry> listLPRConstraints;
+        
         private LPREntry ObjectiveFunction;
         private List<DecisionVariable> decisionVariable;
         //is the Problem a Maximum problem 
@@ -174,7 +179,11 @@ namespace LPR281_Assignment1
 
     public class LPREntry
     {
+        //Added Temporaraly
+        public LPREntry()
+        {
 
+        }
         public LPREntry(double result, char comparison, List<float> x)
         {
 
@@ -243,5 +252,11 @@ namespace LPR281_Assignment1
 
         public String Name { get; set; }
         public String Desciption { get; set; }
+
+        override
+        public String ToString()
+        {
+            return _name +" : " + _description;
+        }
     }
 }

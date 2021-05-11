@@ -20,7 +20,7 @@ namespace LPR281_Assignment1
 
         private void btnDecisionVariableAdd_Click(object sender, EventArgs e)
         {
-            using (DecisionVariable dialog = new DecisionVariable())
+            using (DecisionVariableDialog dialog = new DecisionVariableDialog())
             {
                 DialogResult result = dialog.ShowDialog();
 
@@ -43,42 +43,44 @@ namespace LPR281_Assignment1
         }
         private void btnDecisionVariableChange_Click(object sender, EventArgs e)
         {
-            
-            using (DecisionVariable dialog = new DecisionVariable())
-            {
-                DialogResult result = dialog.ShowDialog();
 
-                switch (result)
-                {
-                    // put in how you want the various results to be handled
-                    // if ok, then something like var x = dialog.MyX;
-                    case DialogResult.OK:
-                        {
-                            lpr.AddDecisionVariable(dialog.getName(), dialog.getDescription());
-
-                            break;
-                        }
-                    case DialogResult.Cancel:
-                        {
-                            break;
-                        }
-
-                }
-
-            }
-            UpdateDecisionVariableGroup();
         }
 
         private void UpdateDecisionVariableGroup()
         {
-            gbDecisionVariable.Controls.Clear();
+            lvDecisionVariable.Items.Clear();
             foreach(DecisionVariable dv in lpr.getDecisionVariables())
             {
-                Label lblDV = new Label();
-                lblDV.Text = dv.ToString();
-                lblDV.Click += new System.EventHandler(this.btnDecisionVariableChange_Click);
-                gbDecisionVariable.Controls.Add(lblDV);
+              //  Label lblDV = new Label();
+              //  lblDV.Text = dv.ToString();
+             //   lblDV.DoubleClick += new System.EventHandler(this.btnDecisionVariableChange_Click);
+                ListViewItem listViewItem = new ListViewItem(dv.ToString());
+                //listViewItem.
+               
+          
+                lvDecisionVariable.Items.Add(listViewItem);
 
+            }
+        }
+
+        private void lvDecisionVariable_DoubleClick(object sender, EventArgs e)
+        {
+            Console.WriteLine("Hello");
+            Console.WriteLine(sender.ToString());
+        }
+
+        private void lvDecisionVariable_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            Console.WriteLine("Hello");
+            Console.WriteLine(sender.ToString());
+            Console.Beep();
+        }
+
+        private void btnDecisionVariableRemove_Click(object sender, EventArgs e)
+        {
+            foreach(ListViewItem lvi in lvDecisionVariable.SelectedItems)
+            {
+                //remove LPRDecisionVariable
             }
         }
     }

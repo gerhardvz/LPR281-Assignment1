@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LPR281_Assignment1
 {
-    class Point
+    public class Point
     {
         public double x;
         public double y;
