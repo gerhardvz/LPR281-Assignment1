@@ -42,7 +42,6 @@ namespace LPR281_Assignment1
         {
             return edtDescription.Text;
         }
-        
 
        
     }

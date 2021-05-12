@@ -111,12 +111,12 @@ namespace LPR281_Assignment1
         }
         private void UpdateObjectiveFunctionGroup()
         {
-            lvDecisionVariable.Items.Clear();
+            lvObjectiveFunction.Items.Clear();
 
             ListViewItem listViewItem = new ListViewItem(lpr.getObjectiveFunction().ToString());
             //listViewItem.
 
-            lvDecisionVariable.Items.Add(listViewItem);
+            lvObjectiveFunction.Items.Add(listViewItem);
 
 
         }
@@ -150,8 +150,9 @@ namespace LPR281_Assignment1
                     //TODO:: Fix so that you can get data from Dialog
                     case DialogResult.OK:
                         {
-                           // lpr.AddDecisionVariable(dialog.getName(), dialog.getDescription());
-
+                          
+                           
+                            lpr.setObjectiveFunction(dialog.getLPREntry());
                             break;
                         }
                     case DialogResult.Cancel:
@@ -162,9 +163,10 @@ namespace LPR281_Assignment1
                 }
 
             }
-            UpdateDecisionVariableGroup();
+            UpdateObjectiveFunctionGroup();
         }
 
+        //TODO::
         private void btnObjectiveFunctionRemove_Click(object sender, EventArgs e)
         {
 
@@ -213,7 +215,7 @@ namespace LPR281_Assignment1
                 int pos = lpr.getDecisionVariableIndex(lvi.Text);
                 if (pos == -1) { return; }
 
-                using (DecisionVariableDialog dialog = new DecisionVariableDialog(lpr.getDecisionVariables()[pos]))
+                using (ObjectiveFunctionDialog dialog = new ObjectiveFunctionDialog(lpr.getObjectiveFunction()))
                 {
                     DialogResult result = dialog.ShowDialog();
 
@@ -223,7 +225,7 @@ namespace LPR281_Assignment1
                         // if ok, then something like var x = dialog.MyX;
                         case DialogResult.OK:
                             {
-                                lpr.ChangeDecisionVariable(pos, dialog.getName(), dialog.getDescription());
+                                lpr.setObjectiveFunction(dialog.getLPREntry());
 
                                 break;
                             }
@@ -236,7 +238,7 @@ namespace LPR281_Assignment1
 
                 }
             }
-            UpdateDecisionVariableGroup();
+            UpdateObjectiveFunctionGroup();
         }
 
         private void lvConstraints_DoubleClick(object sender, EventArgs e)

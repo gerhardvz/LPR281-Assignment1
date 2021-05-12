@@ -17,7 +17,7 @@ namespace LPR281_Assignment1
         decisionVariable = new List<DecisionVariable>();
     }
 
-        public void AddConstraint(double result, char comparison, List<float> x)
+        public void AddConstraint(double result, char comparison, List<double> x)
         {
 
             listLPRConstraints.Add(new LPREntry(result,comparison,x));
@@ -37,9 +37,9 @@ namespace LPR281_Assignment1
     */
      
         
-        public void RemoveConstraint(double result, char comparison, List<float> x)
+        public void RemoveConstraint(double result, char comparison, List<double> x)
         { 
-            Predicate<LPREntry> predicate= (LPREntry lpr)=> (lpr.getResult()==result&&lpr.row.Equals(x)&&lpr.getComparison()==comparison);
+            Predicate<LPREntry> predicate= (LPREntry lpr)=> (lpr.getResult()==result&&lpr._variableValues.Equals(x)&&lpr.getComparison()==comparison);
             listLPRConstraints.Remove( listLPRConstraints.Find(predicate));
       
          
@@ -56,7 +56,7 @@ namespace LPR281_Assignment1
          
         }
                     
-        public int getConstraintIndex(double result, char comparison, List<float> x)
+        public int getConstraintIndex(double result, char comparison, List<double> x)
         {
             Predicate<LPREntry> predicate = (LPREntry dv) => (dv.ToString() == new LPREntry(result,comparison,x).ToString());
             int pos = listLPRConstraints.FindIndex(predicate);
@@ -135,12 +135,12 @@ namespace LPR281_Assignment1
 
                     //Matrix Calculation to get intersecting point for the two lines (only two variables - x1 and x2)
                     //TODO: - use Matrix library to use infinite Definition Variables
-                    double A1 = listLPRConstraints[i].row[0];
-                    double A2 = listLPRConstraints[j].row[0];
-                    double B1 = listLPRConstraints[i].row[1];
-                    double B2 = listLPRConstraints[j].row[1];
-                    double C1 = listLPRConstraints[i].getValue();
-                    double C2 = listLPRConstraints[j].getValue();
+                    double A1 = listLPRConstraints[i]._variableValues[0];
+                    double A2 = listLPRConstraints[j]._variableValues[0];
+                    double B1 = listLPRConstraints[i]._variableValues[1];
+                    double B2 = listLPRConstraints[j]._variableValues[1];
+                    double C1 = listLPRConstraints[i].getResult();
+                    double C2 = listLPRConstraints[j].getResult();
 
                     double det = A1 * B2 - A2 * B1;
                     if (det != 0)
@@ -186,7 +186,7 @@ namespace LPR281_Assignment1
                 Point pLargest = new Point(0, 0);
                 foreach (Point p in validPoints)
                 {
-                    double val = (ObjectiveFunction.row[0] * p.x) + (ObjectiveFunction.row[1] * p.y);
+                    double val = (ObjectiveFunction._variableValues[0] * p.x) + (ObjectiveFunction._variableValues[1] * p.y);
 
 
                     if (largest < val)
@@ -206,7 +206,7 @@ namespace LPR281_Assignment1
                 Point pSmallest = new Point(0, 0);
                 foreach (Point p in validPoints)
                 {
-                    double val = (ObjectiveFunction.row[0] * p.x) + (ObjectiveFunction.row[1] * p.y);
+                    double val = (ObjectiveFunction._variableValues[0] * p.x) + (ObjectiveFunction._variableValues[1] * p.y);
 
                     if (smallest > val)
                     {
@@ -247,40 +247,101 @@ namespace LPR281_Assignment1
         {
 
         }
-        public LPREntry(double result, char comparison, List<float> x)
+        public LPREntry(double result, char comparison,List<double> x)
         {
 
-            foreach (float a in x)
-            {
-                row.Add(a);
-            }
+            _variableValues.AddRange(x);
 
             this.comparison = comparison;
             this.result = result;
 
         }
-        public List<float> row;
 
+        public LPREntry(double result, char comparison, List<String> variableNames, List<double> x)
+        {
+            if (variableNames.Count != x.Count)
+            {
+                //error
+                throw new Exception("Incompatible sizes of values");
+            }
+
+            _variableValues.AddRange(x);
+            this._variableNames.AddRange(variableNames);
+            this.comparison = comparison;
+            this.result = result;
+
+        }
+        public List<double> _variableValues = new List<double>();
+        public List<String> _variableNames = new List<string>();
 
         char comparison ;
         public char getComparison() { return comparison; }
         double result;
-        public double getValue() { return result; }
+        public List<double> getValue() { return _variableValues; }
 
         public double getResult()
         {
             return result;
         }
 
-        public String toString()
+        public bool isInverse { get; set; }
+
+        public List<string> getColumns()
         {
+            return _variableNames;
+        }
+
+        override
+        public String ToString()
+        {
+            String val = "";
+
+            if (isInverse)
+            {
+                for (int i = 0; i < _variableNames.Count; i++)
+                {
+                    val += (_variableValues[i] * -1).ToString() + _variableNames[i];
+                    if (i < _variableNames.Count - 1)
+                    {
+                        val += " + ";
+                    }
+                    
+                }
+                val += " ";
+                val += comparison;
+                val += " ";
+                val += result.ToString();
+            }
+            else
+            {
+                for (int i = 0; i < _variableNames.Count; i++)
+                {
+                    val += (_variableValues[i]).ToString() + _variableNames[i];
+                    if (i < _variableNames.Count-1)
+                    {
+                        val += " + ";
+                    }
+                }
+                val += " ";
+                val += comparison;
+                val += " ";
+                val += result.ToString();
+            }
+
+            return val;
+        }
+
+        //Print out values in the format x1+x2+x3=5
+        public String expressionString(List<String> columns)
+        {
+
             return "";
         }
 
         public bool adhear(Point point)
         {
 
-            double value = (row[0] * point.x) + (row[1] * point.y);
+            double value = (_variableValues[0] * point.x) + (_variableValues[1] * point.y);
 
             switch (comparison)
             {
@@ -304,6 +365,8 @@ namespace LPR281_Assignment1
             return false;
         }
 
+
+       
         //slack
         //access/
         //artificail/

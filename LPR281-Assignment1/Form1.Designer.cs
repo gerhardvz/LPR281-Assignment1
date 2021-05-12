@@ -184,6 +184,7 @@ namespace LPR281_Assignment1
             this.lvObjectiveFunction.Size = new System.Drawing.Size(288, 72);
             this.lvObjectiveFunction.TabIndex = 1;
             this.lvObjectiveFunction.UseCompatibleStateImageBehavior = false;
+            this.lvObjectiveFunction.View = System.Windows.Forms.View.List;
             this.lvObjectiveFunction.DoubleClick += new System.EventHandler(this.lvObjectiveFunction_DoubleClick);
             // 
             // Form1

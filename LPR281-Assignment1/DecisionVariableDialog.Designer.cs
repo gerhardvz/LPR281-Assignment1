@@ -100,7 +100,7 @@ namespace LPR281_Assignment1
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // DecisionVariable
+            // DecisionVariableDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -113,7 +113,7 @@ namespace LPR281_Assignment1
             this.Controls.Add(this.edtDescription);
             this.Controls.Add(this.edtName);
             this.Controls.Add(this.label1);
-            this.Name = "DecisionVariable";
+            this.Name = "DecisionVariableDialog";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Decision Variable";
