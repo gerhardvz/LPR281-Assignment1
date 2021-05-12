@@ -37,6 +37,8 @@ namespace LPR281_Assignment1
             for (int i = 0; i < objectiveFunction.getColumns().Count; i++)
             {
                 Control[] ctrls = tblMatrix.Controls.Find(objectiveFunction.getColumns()[i] + "-multiplier", true);
+                if (ctrls == null)
+                    continue;
                 double val = objectiveFunction.getValue()[i];
                 ctrls[0].Text =val.ToString();
             }

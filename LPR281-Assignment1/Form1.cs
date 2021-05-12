@@ -64,7 +64,7 @@ namespace LPR281_Assignment1
         }
 
 
-      
+
 
         private void btnDecisionVariableRemove_Click(object sender, EventArgs e)
         {
@@ -76,34 +76,7 @@ namespace LPR281_Assignment1
             UpdateDecisionVariableGroup();
         }
 
-        private void btnConstraintAdd_Click(object sender, EventArgs e)
-        {
-            using (DecisionVariableDialog dialog = new DecisionVariableDialog())
-            {
-                DialogResult result = dialog.ShowDialog();
 
-                switch (result)
-                {
-                    // put in how you want the various results to be handled
-                    // if ok, then something like var x = dialog.MyX;
-                    //TODO:: Fix so that you can get data from Dialog
-                    case DialogResult.OK:
-                        {
-                            lpr.AddDecisionVariable(dialog.getName(), dialog.getDescription());
-
-                            break;
-                        }
-                    case DialogResult.Cancel:
-                        {
-                            break;
-                        }
-
-                }
-
-            }
-            UpdateDecisionVariableGroup();
-
-        }
 
         private void btnConstraintRemove_Click(object sender, EventArgs e)
         {
@@ -150,8 +123,8 @@ namespace LPR281_Assignment1
                     //TODO:: Fix so that you can get data from Dialog
                     case DialogResult.OK:
                         {
-                          
-                           
+
+
                             lpr.setObjectiveFunction(dialog.getLPREntry());
                             break;
                         }
@@ -260,7 +233,7 @@ namespace LPR281_Assignment1
                         case DialogResult.OK:
                             {
                                 //TODO::Change to fit constraints
-                             //   lpr.ChangeConstraint(pos, dialog.getName(), dialog.getDescription());
+                                //   lpr.ChangeConstraint(pos, dialog.getName(), dialog.getDescription());
 
                                 break;
                             }
@@ -275,5 +248,37 @@ namespace LPR281_Assignment1
             }
             UpdateDecisionVariableGroup();
         }
+
+        private void btnConstraintAdd_Click(object sender, EventArgs e)
+        {
+
+
+            using (ConstraintDialog dialog = new ConstraintDialog(lpr.ListDecisionVaraibleNames()))
+            {
+                DialogResult result = dialog.ShowDialog();
+
+                switch (result)
+                {
+                    // put in how you want the various results to be handled
+                    // if ok, then something like var x = dialog.MyX;
+                    case DialogResult.OK:
+                        {
+                            //TODO::Change to fit constraints
+                            //   lpr.ChangeConstraint(pos, dialog.getName(), dialog.getDescription());
+                            dialog.ToLPREntry();
+                            //lpr.AddConstraint();
+                            break;
+                        }
+                    case DialogResult.Cancel:
+                        {
+                            break;
+                        }
+
+                }
+
+            }
+        
+        UpdateDecisionVariableGroup();
+    }    
     }
 }

@@ -124,6 +124,7 @@ namespace LPR281_Assignment1
             this.btnConstraintAdd.TabIndex = 8;
             this.btnConstraintAdd.Text = "Add";
             this.btnConstraintAdd.UseVisualStyleBackColor = true;
+            this.btnConstraintAdd.Click += new System.EventHandler(this.btnConstraintAdd_Click);
             // 
             // btnConstraintRemove
             // 
