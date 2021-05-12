@@ -38,9 +38,9 @@ namespace LPR281_Assignment1
             this.btnDecisionVariableAdd = new System.Windows.Forms.Button();
             this.btnDecisionVariableRemove = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listView3 = new System.Windows.Forms.ListView();
+            this.lvConstraints = new System.Windows.Forms.ListView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.lvObjectiveFunction = new System.Windows.Forms.ListView();
             this.panel1.SuspendLayout();
             this.gbDecisionVariable.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -135,7 +135,7 @@ namespace LPR281_Assignment1
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.listView3);
+            this.groupBox2.Controls.Add(this.lvConstraints);
             this.groupBox2.Location = new System.Drawing.Point(43, 275);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(301, 164);
@@ -143,18 +143,18 @@ namespace LPR281_Assignment1
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Constraints";
             // 
-            // listView3
+            // lvConstraints
             // 
-            this.listView3.HideSelection = false;
-            this.listView3.Location = new System.Drawing.Point(6, 22);
-            this.listView3.Name = "listView3";
-            this.listView3.Size = new System.Drawing.Size(288, 136);
-            this.listView3.TabIndex = 1;
-            this.listView3.UseCompatibleStateImageBehavior = false;
+            this.lvConstraints.HideSelection = false;
+            this.lvConstraints.Location = new System.Drawing.Point(6, 22);
+            this.lvConstraints.Name = "lvConstraints";
+            this.lvConstraints.Size = new System.Drawing.Size(288, 136);
+            this.lvConstraints.TabIndex = 1;
+            this.lvConstraints.UseCompatibleStateImageBehavior = false;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.listView2);
+            this.groupBox3.Controls.Add(this.lvObjectiveFunction);
             this.groupBox3.Location = new System.Drawing.Point(43, 144);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(301, 100);
@@ -162,14 +162,14 @@ namespace LPR281_Assignment1
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Objective Function";
             // 
-            // listView2
+            // lvObjectiveFunction
             // 
-            this.listView2.HideSelection = false;
-            this.listView2.Location = new System.Drawing.Point(6, 22);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(288, 72);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
+            this.lvObjectiveFunction.HideSelection = false;
+            this.lvObjectiveFunction.Location = new System.Drawing.Point(6, 22);
+            this.lvObjectiveFunction.Name = "lvObjectiveFunction";
+            this.lvObjectiveFunction.Size = new System.Drawing.Size(288, 72);
+            this.lvObjectiveFunction.TabIndex = 1;
+            this.lvObjectiveFunction.UseCompatibleStateImageBehavior = false;
             // 
             // Form1
             // 
@@ -198,8 +198,8 @@ namespace LPR281_Assignment1
         private System.Windows.Forms.Button btnConstraintRemove;
         private System.Windows.Forms.Button btnConstraintAdd;
         private System.Windows.Forms.DataVisualization.Charting.Chart graph;
-        private System.Windows.Forms.ListView listView3;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView lvConstraints;
+        private System.Windows.Forms.ListView lvObjectiveFunction;
         private System.Windows.Forms.ListView lvDecisionVariable;
     }
 }

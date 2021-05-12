@@ -27,7 +27,7 @@ namespace LPR281_Assignment1
 
 
             decisionVariable.Add(new DecisionVariable(name, description));
-            decisionVariable.Add(new (name, description));
+           
 
         }
 
@@ -35,29 +35,50 @@ namespace LPR281_Assignment1
         /**
     * Remove a Constraint
     */
-        public void RemoveConstraint() {}
-        
+     
         
         public void RemoveConstraint(double result, char comparison, List<float> x)
         { 
-            Predicate<LPREntry> predicate= (LPREntry lpr)=> (lpr.getResult==result&&lpr.row.Equals(x)&&lpr.getComparison);
+            Predicate<LPREntry> predicate= (LPREntry lpr)=> (lpr.getResult()==result&&lpr.row.Equals(x)&&lpr.getComparison()==comparison);
             listLPRConstraints.Remove( listLPRConstraints.Find(predicate));
       
          
         }
              
-        public void RemovedecisionVariable (string value)
+        public void RemoveDecisionVariable (string value)
         { 
-            Predicate<LPREntry> predicate= (LPREntry lpr)=> (lpr.toString==value);
-            listLPRConstraints.Remove( listLPRConstraints.Find(predicate));
+            Predicate<DecisionVariable> predicate= (DecisionVariable dv)=> (dv.ToString()==value);
+            int pos = decisionVariable.FindIndex(predicate);
+            if (pos > -1) { decisionVariable.RemoveAt(pos); }
+            
+            //listLPRConstraints.Remove( );
       
          
         }
                     
+        public int getConstraintIndex(double result, char comparison, List<float> x)
+        {
+            Predicate<LPREntry> predicate = (LPREntry dv) => (dv.ToString() == new LPREntry(result,comparison,x).ToString());
+            int pos = listLPRConstraints.FindIndex(predicate);
+            return pos;
+        }
+        public int getConstraintIndex(string value)
+        {
+            Predicate<LPREntry> predicate = (LPREntry dv) => (dv.ToString() ==value);
+            int pos = listLPRConstraints.FindIndex(predicate);
+            return pos;
+        }
+        public int getDecisionVariableIndex(string value)
+        {
+            Predicate<DecisionVariable> predicate = (DecisionVariable dv) => (dv.ToString() == value);
+            int pos = decisionVariable.FindIndex(predicate);
+            return pos;
+        }
 
-
-
-        public void ChangeConstraint() { }
+        //TODO::
+        public void ChangeConstraint( int pos, double result, char comparison, List<float> x) {
+        
+        }
 
         public void ChangeDecisionVariable(int pos, String name, String description)
         {
@@ -65,14 +86,23 @@ namespace LPR281_Assignment1
             decisionVariable[pos].Desciption = description;
         }
 
-        public void getConstraints() { }
+        public List<LPREntry> getConstraints() {
+            return listLPRConstraints;
+        }
 
         public List<DecisionVariable> getDecisionVariables()
         {
             return decisionVariable;
         }
 
-        public void setObjectiveFunction() { }
+        public void setObjectiveFunction(LPREntry of) {
+            ObjectiveFunction = of;
+        }
+
+        public LPREntry getObjectiveFunction()
+        {
+            return ObjectiveFunction;
+        }
 
         /**
          * Compares Two lines to get Intersecting point
@@ -183,8 +213,15 @@ namespace LPR281_Assignment1
          * @param x - X Coordinates
          * @param y - Y Coordinates
          */
-        public void Calculate() { }
+        public void Calculate() {
+        
+            //list of point = get corner point
+            //get valid point of feasable region from the points gotten earlier
+            //calc lp value - max/min value calculate by implementing the Objective function
+
+        }
         private List<LPREntry> listLPRConstraints;
+        
         
         private LPREntry ObjectiveFunction;
         private List<DecisionVariable> decisionVariable;
@@ -216,7 +253,7 @@ namespace LPR281_Assignment1
 
 
         char comparison ;
-        public char getComparison() {return comparison };
+        public char getComparison() { return comparison; }
         double result;
         public double getValue() { return result; }
 
@@ -262,7 +299,7 @@ namespace LPR281_Assignment1
         //artificail/
     }
 
-    public class DecisionVariable
+    public class DecisionVariable :IComparable
     {
         public DecisionVariable(String Name, String Description)
         {
@@ -272,13 +309,31 @@ namespace LPR281_Assignment1
         String _name;
         String _description;
 
-        public String Name { get; set; }
-        public String Desciption { get; set; }
+        public String Name { get { return _name; } set { _name = value; } }
+        public String Desciption { get { return _description; } set { _description = value; } }
 
         override
         public String ToString()
         {
             return _name +" : " + _description;
+        }
+        public int CompareTo(Object o)
+        {
+            DecisionVariable dv = o as DecisionVariable;
+            if (dv == null)
+                throw new ArgumentException("Not valid object");
+
+            if (_name.CompareTo(dv._name) != 0)
+            {
+                return _name.CompareTo(dv._name);
+            }
+            if (_description.CompareTo(dv._description) != 0)
+            {
+                return _description.CompareTo(dv._description);
+            }
+
+
+            return 0;
         }
     }
 }

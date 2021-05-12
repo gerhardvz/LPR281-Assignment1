@@ -19,9 +19,18 @@ namespace LPR281_Assignment1
 
         public DecisionVariableDialog(String name,String descr)
         {
+            
+            InitializeComponent();
             edtName.Text = name;
             edtDescription.Text = descr;
+        }
+
+        public DecisionVariableDialog(DecisionVariable dv)
+        {
+            
             InitializeComponent();
+            edtName.Text = dv.Name;
+            edtDescription.Text = dv.Desciption;
         }
 
         public String getName()
