@@ -30,16 +30,17 @@ namespace LPR281_Assignment1
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnObjectiveFunctionChange = new System.Windows.Forms.Button();
-            this.btnConstraintRemove = new System.Windows.Forms.Button();
-            this.btnConstraintAdd = new System.Windows.Forms.Button();
             this.gbDecisionVariable = new System.Windows.Forms.GroupBox();
             this.lvDecisionVariable = new System.Windows.Forms.ListView();
             this.btnDecisionVariableAdd = new System.Windows.Forms.Button();
             this.btnDecisionVariableRemove = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnConstraintAdd = new System.Windows.Forms.Button();
+            this.btnConstraintRemove = new System.Windows.Forms.Button();
             this.lvConstraints = new System.Windows.Forms.ListView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnObjectiveFunctionRemove = new System.Windows.Forms.Button();
+            this.btnObjectiveFunctionAdd = new System.Windows.Forms.Button();
             this.lvObjectiveFunction = new System.Windows.Forms.ListView();
             this.panel1.SuspendLayout();
             this.gbDecisionVariable.SuspendLayout();
@@ -49,9 +50,6 @@ namespace LPR281_Assignment1
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnObjectiveFunctionChange);
-            this.panel1.Controls.Add(this.btnConstraintRemove);
-            this.panel1.Controls.Add(this.btnConstraintAdd);
             this.panel1.Controls.Add(this.gbDecisionVariable);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.groupBox3);
@@ -59,33 +57,6 @@ namespace LPR281_Assignment1
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(485, 469);
             this.panel1.TabIndex = 3;
-            // 
-            // btnObjectiveFunctionChange
-            // 
-            this.btnObjectiveFunctionChange.Location = new System.Drawing.Point(361, 186);
-            this.btnObjectiveFunctionChange.Name = "btnObjectiveFunctionChange";
-            this.btnObjectiveFunctionChange.Size = new System.Drawing.Size(75, 23);
-            this.btnObjectiveFunctionChange.TabIndex = 10;
-            this.btnObjectiveFunctionChange.Text = "Set";
-            this.btnObjectiveFunctionChange.UseVisualStyleBackColor = true;
-            // 
-            // btnConstraintRemove
-            // 
-            this.btnConstraintRemove.Location = new System.Drawing.Point(365, 392);
-            this.btnConstraintRemove.Name = "btnConstraintRemove";
-            this.btnConstraintRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnConstraintRemove.TabIndex = 9;
-            this.btnConstraintRemove.Text = "Remove";
-            this.btnConstraintRemove.UseVisualStyleBackColor = true;
-            // 
-            // btnConstraintAdd
-            // 
-            this.btnConstraintAdd.Location = new System.Drawing.Point(365, 310);
-            this.btnConstraintAdd.Name = "btnConstraintAdd";
-            this.btnConstraintAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnConstraintAdd.TabIndex = 8;
-            this.btnConstraintAdd.Text = "Add";
-            this.btnConstraintAdd.UseVisualStyleBackColor = true;
             // 
             // gbDecisionVariable
             // 
@@ -111,7 +82,7 @@ namespace LPR281_Assignment1
             this.lvDecisionVariable.TabIndex = 0;
             this.lvDecisionVariable.UseCompatibleStateImageBehavior = false;
             this.lvDecisionVariable.View = System.Windows.Forms.View.List;
-            this.lvDecisionVariable.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lvDecisionVariable_ItemSelectionChanged);
+            this.lvDecisionVariable.DoubleClick += new System.EventHandler(this.lvDecisionVariable_DoubleClick);
             // 
             // btnDecisionVariableAdd
             // 
@@ -135,13 +106,33 @@ namespace LPR281_Assignment1
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnConstraintAdd);
+            this.groupBox2.Controls.Add(this.btnConstraintRemove);
             this.groupBox2.Controls.Add(this.lvConstraints);
             this.groupBox2.Location = new System.Drawing.Point(43, 275);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(301, 164);
+            this.groupBox2.Size = new System.Drawing.Size(410, 164);
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Constraints";
+            // 
+            // btnConstraintAdd
+            // 
+            this.btnConstraintAdd.Location = new System.Drawing.Point(322, 31);
+            this.btnConstraintAdd.Name = "btnConstraintAdd";
+            this.btnConstraintAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnConstraintAdd.TabIndex = 8;
+            this.btnConstraintAdd.Text = "Add";
+            this.btnConstraintAdd.UseVisualStyleBackColor = true;
+            // 
+            // btnConstraintRemove
+            // 
+            this.btnConstraintRemove.Location = new System.Drawing.Point(322, 113);
+            this.btnConstraintRemove.Name = "btnConstraintRemove";
+            this.btnConstraintRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnConstraintRemove.TabIndex = 9;
+            this.btnConstraintRemove.Text = "Remove";
+            this.btnConstraintRemove.UseVisualStyleBackColor = true;
             // 
             // lvConstraints
             // 
@@ -151,16 +142,39 @@ namespace LPR281_Assignment1
             this.lvConstraints.Size = new System.Drawing.Size(288, 136);
             this.lvConstraints.TabIndex = 1;
             this.lvConstraints.UseCompatibleStateImageBehavior = false;
+            this.lvConstraints.DoubleClick += new System.EventHandler(this.lvConstraints_DoubleClick);
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnObjectiveFunctionRemove);
+            this.groupBox3.Controls.Add(this.btnObjectiveFunctionAdd);
             this.groupBox3.Controls.Add(this.lvObjectiveFunction);
             this.groupBox3.Location = new System.Drawing.Point(43, 144);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(301, 100);
+            this.groupBox3.Size = new System.Drawing.Size(410, 100);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Objective Function";
+            // 
+            // btnObjectiveFunctionRemove
+            // 
+            this.btnObjectiveFunctionRemove.Location = new System.Drawing.Point(322, 62);
+            this.btnObjectiveFunctionRemove.Name = "btnObjectiveFunctionRemove";
+            this.btnObjectiveFunctionRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnObjectiveFunctionRemove.TabIndex = 11;
+            this.btnObjectiveFunctionRemove.Text = "Remove";
+            this.btnObjectiveFunctionRemove.UseVisualStyleBackColor = true;
+            this.btnObjectiveFunctionRemove.Click += new System.EventHandler(this.btnObjectiveFunctionRemove_Click);
+            // 
+            // btnObjectiveFunctionAdd
+            // 
+            this.btnObjectiveFunctionAdd.Location = new System.Drawing.Point(322, 22);
+            this.btnObjectiveFunctionAdd.Name = "btnObjectiveFunctionAdd";
+            this.btnObjectiveFunctionAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnObjectiveFunctionAdd.TabIndex = 10;
+            this.btnObjectiveFunctionAdd.Text = "Add";
+            this.btnObjectiveFunctionAdd.UseVisualStyleBackColor = true;
+            this.btnObjectiveFunctionAdd.Click += new System.EventHandler(this.btnObjectiveFunctionAdd_Click);
             // 
             // lvObjectiveFunction
             // 
@@ -170,12 +184,13 @@ namespace LPR281_Assignment1
             this.lvObjectiveFunction.Size = new System.Drawing.Size(288, 72);
             this.lvObjectiveFunction.TabIndex = 1;
             this.lvObjectiveFunction.UseCompatibleStateImageBehavior = false;
+            this.lvObjectiveFunction.DoubleClick += new System.EventHandler(this.lvObjectiveFunction_DoubleClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1296, 650);
+            this.ClientSize = new System.Drawing.Size(1151, 650);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -194,13 +209,14 @@ namespace LPR281_Assignment1
         private System.Windows.Forms.GroupBox gbDecisionVariable;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button btnObjectiveFunctionChange;
+        private System.Windows.Forms.Button btnObjectiveFunctionAdd;
         private System.Windows.Forms.Button btnConstraintRemove;
         private System.Windows.Forms.Button btnConstraintAdd;
         private System.Windows.Forms.DataVisualization.Charting.Chart graph;
         private System.Windows.Forms.ListView lvConstraints;
         private System.Windows.Forms.ListView lvObjectiveFunction;
         private System.Windows.Forms.ListView lvDecisionVariable;
+        private System.Windows.Forms.Button btnObjectiveFunctionRemove;
     }
 }
 

@@ -64,39 +64,7 @@ namespace LPR281_Assignment1
         }
 
 
-        private void lvDecisionVariable_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
-        {
-            foreach (ListViewItem lvi in ((ListView)sender).SelectedItems)
-            {
-
-                int pos = lpr.getDecisionVariableIndex(lvi.Text);
-                if (pos == -1) { return; }
-
-                using (DecisionVariableDialog dialog = new DecisionVariableDialog(lpr.getDecisionVariables()[pos]))
-                {
-                    DialogResult result = dialog.ShowDialog();
-
-                    switch (result)
-                    {
-                        // put in how you want the various results to be handled
-                        // if ok, then something like var x = dialog.MyX;
-                        case DialogResult.OK:
-                            {
-                                lpr.ChangeDecisionVariable(pos, dialog.getName(), dialog.getDescription());
-
-                                break;
-                            }
-                        case DialogResult.Cancel:
-                            {
-                                break;
-                            }
-
-                    }
-
-                }
-            }
-            UpdateDecisionVariableGroup();
-        }
+      
 
         private void btnDecisionVariableRemove_Click(object sender, EventArgs e)
         {
@@ -110,6 +78,30 @@ namespace LPR281_Assignment1
 
         private void btnConstraintAdd_Click(object sender, EventArgs e)
         {
+            using (DecisionVariableDialog dialog = new DecisionVariableDialog())
+            {
+                DialogResult result = dialog.ShowDialog();
+
+                switch (result)
+                {
+                    // put in how you want the various results to be handled
+                    // if ok, then something like var x = dialog.MyX;
+                    //TODO:: Fix so that you can get data from Dialog
+                    case DialogResult.OK:
+                        {
+                            lpr.AddDecisionVariable(dialog.getName(), dialog.getDescription());
+
+                            break;
+                        }
+                    case DialogResult.Cancel:
+                        {
+                            break;
+                        }
+
+                }
+
+            }
+            UpdateDecisionVariableGroup();
 
         }
 
@@ -143,6 +135,143 @@ namespace LPR281_Assignment1
                 lvConstraints.Items.Add(listViewItem);
 
             }
+        }
+
+        private void btnObjectiveFunctionAdd_Click(object sender, EventArgs e)
+        {
+            using (ObjectiveFunctionDialog dialog = new ObjectiveFunctionDialog(lpr.ListDecisionVaraibleNames()))
+            {
+                DialogResult result = dialog.ShowDialog();
+
+                switch (result)
+                {
+                    // put in how you want the various results to be handled
+                    // if ok, then something like var x = dialog.MyX;
+                    //TODO:: Fix so that you can get data from Dialog
+                    case DialogResult.OK:
+                        {
+                           // lpr.AddDecisionVariable(dialog.getName(), dialog.getDescription());
+
+                            break;
+                        }
+                    case DialogResult.Cancel:
+                        {
+                            break;
+                        }
+
+                }
+
+            }
+            UpdateDecisionVariableGroup();
+        }
+
+        private void btnObjectiveFunctionRemove_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvDecisionVariable_DoubleClick(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lvi in ((ListView)sender).SelectedItems)
+            {
+
+                int pos = lpr.getDecisionVariableIndex(lvi.Text);
+                if (pos == -1) { return; }
+
+                using (DecisionVariableDialog dialog = new DecisionVariableDialog(lpr.getDecisionVariables()[pos]))
+                {
+                    DialogResult result = dialog.ShowDialog();
+
+                    switch (result)
+                    {
+                        // put in how you want the various results to be handled
+                        // if ok, then something like var x = dialog.MyX;
+                        case DialogResult.OK:
+                            {
+                                lpr.ChangeDecisionVariable(pos, dialog.getName(), dialog.getDescription());
+
+                                break;
+                            }
+                        case DialogResult.Cancel:
+                            {
+                                break;
+                            }
+
+                    }
+
+                }
+            }
+            UpdateDecisionVariableGroup();
+        }
+
+        //TODO::Change to Objective function
+        private void lvObjectiveFunction_DoubleClick(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lvi in ((ListView)sender).SelectedItems)
+            {
+
+                int pos = lpr.getDecisionVariableIndex(lvi.Text);
+                if (pos == -1) { return; }
+
+                using (DecisionVariableDialog dialog = new DecisionVariableDialog(lpr.getDecisionVariables()[pos]))
+                {
+                    DialogResult result = dialog.ShowDialog();
+
+                    switch (result)
+                    {
+                        // put in how you want the various results to be handled
+                        // if ok, then something like var x = dialog.MyX;
+                        case DialogResult.OK:
+                            {
+                                lpr.ChangeDecisionVariable(pos, dialog.getName(), dialog.getDescription());
+
+                                break;
+                            }
+                        case DialogResult.Cancel:
+                            {
+                                break;
+                            }
+
+                    }
+
+                }
+            }
+            UpdateDecisionVariableGroup();
+        }
+
+        private void lvConstraints_DoubleClick(object sender, EventArgs e)
+        {
+            foreach (ListViewItem lvi in ((ListView)sender).SelectedItems)
+            {
+
+                int pos = lpr.getConstraintIndex(lvi.Text);
+                if (pos == -1) { return; }
+
+                using (ConstraintDialog dialog = new ConstraintDialog(lpr.getConstraints()[pos]))
+                {
+                    DialogResult result = dialog.ShowDialog();
+
+                    switch (result)
+                    {
+                        // put in how you want the various results to be handled
+                        // if ok, then something like var x = dialog.MyX;
+                        case DialogResult.OK:
+                            {
+                                //TODO::Change to fit constraints
+                             //   lpr.ChangeConstraint(pos, dialog.getName(), dialog.getDescription());
+
+                                break;
+                            }
+                        case DialogResult.Cancel:
+                            {
+                                break;
+                            }
+
+                    }
+
+                }
+            }
+            UpdateDecisionVariableGroup();
         }
     }
 }

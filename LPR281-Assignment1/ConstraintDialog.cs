@@ -18,6 +18,11 @@ namespace LPR281_Assignment1
             InitializeComponent();
         }
 
-        
+        public ConstraintDialog(LPREntry constraint)
+        {
+            InitializeComponent();
+        }
+
+
     }
 }

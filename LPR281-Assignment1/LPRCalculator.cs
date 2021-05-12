@@ -75,6 +75,16 @@ namespace LPR281_Assignment1
             return pos;
         }
 
+        public List<String> ListDecisionVaraibleNames()
+        {
+            List<String> list = new List<string>();
+            foreach(DecisionVariable dv in decisionVariable)
+            {
+                list.Add(dv.Name);
+            }
+            return list;
+        }
+
         //TODO::
         public void ChangeConstraint( int pos, double result, char comparison, List<float> x) {
         
